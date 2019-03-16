@@ -1,0 +1,10 @@
+<div *ngIf="vendor">
+  <h2>{{vendor.vendorName | uppercase}} Details</h2>
+  <div><span>VendorId: </span>{{vendor.vendorId}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="vendor.vendorName" placeholder="name"/>
+    </label>
+  </div>
+
+</div>

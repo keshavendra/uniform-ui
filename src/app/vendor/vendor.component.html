@@ -7,8 +7,7 @@
   </li>
 </ul>
 
-<div *ngIf="selectedVendor">
-
+<!-- <div *ngIf="selectedVendor">
   <h2>{{selectedVendor.name | uppercase}} Details</h2>
   <div><span>VendorID: </span>{{selectedVendor.vendorId}}</div>
   <div>
@@ -16,5 +15,5 @@
       <input [(ngModel)]="selectedVendor.vendorName" placeholder="name"/>
     </label>
   </div>
-
-</div>
+</div> -->
+<app-vendor-detail [vendor]="selectedVendor"></app-vendor-detail>

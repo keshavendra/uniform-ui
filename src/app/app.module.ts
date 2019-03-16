@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { VendorComponent } from './vendor/vendor.component';
 
 import { FormsModule } from '@angular/forms';
+import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VendorComponent
+    VendorComponent,
+    VendorDetailComponent
   ],
   imports: [
     BrowserModule,
