@@ -1,0 +1,20 @@
+<h2>My Vendors</h2>
+<ul class="vendors">
+  <li *ngFor="let vendor of vendors"
+    [class.selected]="vendor === selectedVendor"
+    (click)="onSelect(vendor)">
+    <span class="badge">{{vendor.vendorId}}</span> {{vendor.vendorName}}
+  </li>
+</ul>
+
+<div *ngIf="selectedVendor">
+
+  <h2>{{selectedVendor.name | uppercase}} Details</h2>
+  <div><span>VendorID: </span>{{selectedVendor.vendorId}}</div>
+  <div>
+    <label>VendorName:
+      <input [(ngModel)]="selectedVendor.vendorName" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
