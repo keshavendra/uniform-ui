@@ -1,0 +1,6 @@
+<a *ngFor="let vendor of vendors" class="col-1-4"
+    routerLink="/detail/{{vendor.vendorId}}">
+  <div class="module hero">
+    <h4>{{vendor.vendorName}}</h4>
+  </div>
+</a>
