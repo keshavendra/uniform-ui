@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Enter Detail for new Vendor</h1>
+<div mat-dialog-content>
+    <!-- <p>What's your favorite animal?</p> -->
+    <mat-form-field>
+        <div>
+            VendorName: <input name="vendorName" matInput [(ngModel)]="newVendor.vendorName"><br/>
+            VendorAddress: <input matInput [(ngModel)]="newVendor.vendorAddress"><br>
+            VendorPhoneNumber: <input matInput [(ngModel)]="newVendor.vendorPhoneNumber"><br>
+        </div>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onSaveClick()">Save</button>
+    <button mat-button [mat-dialog-close]="newVendor.vendorName" cdkFocusInitial>No Thanks</button>
+</div>
