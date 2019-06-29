@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Vendor } from '../model/vendor';
-// import { VENDORS_LIST } from '../mock/mock-vendors';
 import { VendorServiceService } from '../services/vendor-service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { GridApi } from 'ag-grid-community';
@@ -28,11 +27,13 @@ export class VendorComponent implements OnInit {
   public vendors: Vendor[];
   public gridApi: GridApi;
   selectedVendor: Vendor;
+  private rowSelection;
 
   constructor(
     private vendorService: VendorServiceService,
     public dialog: MatDialog
-  ) {  }
+  ) { this.rowSelection = 'single';
+  }
 
   ngOnInit() {
     this.getVendors();
@@ -52,15 +53,29 @@ export class VendorComponent implements OnInit {
     this.gridApi.sizeColumnsToFit();
   }
 
-  openDialog(): void {
+  openDialogForAdd(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '500px',
+      width: '600px',
       data: {newVendor: this.newVendor, vendorService: this.vendorService}
     }
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.getVendors();
+      // this.animal = result;
+    });
+  }
+
+  openDialogForUpdate(): void {
+    const selectedRowNodes = this.gridApi.getSelectedRows()[0];
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '600px',
+      data: {newVendor: selectedRowNodes, vendorService: this.vendorService}
+    }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getVendors();
       // this.animal = result;
     });
   }

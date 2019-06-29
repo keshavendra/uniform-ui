@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Vendor } from '../model/vendor';
 import { VENDORS_LIST } from '../mock/mock-vendors';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,7 +35,8 @@ export class VendorServiceService {
   }
 
   getVendor(id: number): Observable<Vendor> {
-    return of(VENDORS_LIST.find(vendor => vendor.vendorId === id ));
+    const parameters = new HttpParams().set('vendorId', id.toString());
+    return this.http.get<Vendor>(this.vendorURL + '/getVendorById', {params: parameters});
   }
 
   save(vendorObject: Vendor) {
