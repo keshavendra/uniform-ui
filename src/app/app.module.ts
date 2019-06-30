@@ -60,6 +60,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { TestComponent } from './test/test.component';
+import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,9 @@ import { TestComponent } from './test/test.component';
     VendorDetailComponent,
     DashboardComponent,
     DialogOverviewExampleDialog,
-    TestComponent
+    TestComponent,
+    LotComponent,
+    LotDetailDialogComponent
   ],
   imports: [
     FormsModule,
@@ -173,7 +176,9 @@ import { TestComponent } from './test/test.component';
   bootstrap: [AppComponent],
   entryComponents: [
     VendorComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    LotComponent,
+    LotDetailDialogComponent
   ]
 })
 export class AppModule { }

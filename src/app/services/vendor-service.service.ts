@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Vendor } from '../model/vendor';
-import { VENDORS_LIST } from '../mock/mock-vendors';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 

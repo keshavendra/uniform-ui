@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Enter Detail for new Lot</h1>
+<div mat-dialog-content>
+    <!-- <p>What's your favorite animal?</p> -->
+    <mat-form-field>
+        <div>
+            <input placeholder="Vendor Name" matInput [(ngModel)]="newLot.lotVendor.vendorName"><br/>
+        </div>
+    </mat-form-field>
+    <br/>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onSaveClick()">Save</button>
+    <!-- <button mat-button [mat-dialog-close]="newVendor.vendorName" cdkFocusInitial>No Thanks</button> -->
+</div>
