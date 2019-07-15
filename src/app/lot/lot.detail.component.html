@@ -1,14 +1,36 @@
 <h1 mat-dialog-title>Enter Detail for new Lot</h1>
 <div mat-dialog-content>
-    <!-- <p>What's your favorite animal?</p> -->
+  <!-- <p>What's your favorite animal?</p> -->
+  <form>
     <mat-form-field>
-        <div>
-            <input placeholder="Vendor Name" matInput [(ngModel)]="newLot.lotVendor.vendorName"><br/>
-        </div>
+      <input type="text" placeholder="Vendor Name" matInput [formControl]="searchTerm" [matAutocomplete]="auto">
+      <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let vendors of searchedVendors" [value]="vendors.vendorName">
+          {{ vendors.vendorName }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
     <br/>
+    <mat-form-field>
+      <input type="number" placeholder="Lot Extra Payment" matInput>
+      <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input type="text" placeholder="Invoice Number" matInput>
+      <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
+    </mat-form-field>
+    <ag-grid-angular 
+      style="width: 100%; height: 300px;" 
+      class="ag-theme-balham"
+      [rowData]="lotsItems" 
+      [columnDefs]="columnDefs"
+      (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onSaveClick()">Save</button>
-    <!-- <button mat-button [mat-dialog-close]="newVendor.vendorName" cdkFocusInitial>No Thanks</button> -->
+  <button mat-button (click)="onSaveClick()">Save</button>
+  <!-- <button mat-button [mat-dialog-close]="newVendor.vendorName" cdkFocusInitial>No Thanks</button> -->
 </div>

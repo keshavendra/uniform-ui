@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Vendor } from '../model/vendor';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -40,6 +42,17 @@ export class VendorServiceService {
 
   save(vendorObject: Vendor) {
     this.http.post(this.vendorURL + '/save', vendorObject, httpOptionsPost).subscribe();
+  }
+
+  getVendorsByTerm(term: string) {
+    const listOfVendors = this.http.get<Vendor[]>(this.vendorURL + '/list/' + term, httpOptions)
+    .pipe(debounceTime(500),
+    map((data: any) => {
+      return (
+        data.length !== 0 ? data as any[] : [{'Vendor Name': 'No record found'} as any]
+      );
+    }));
+    return listOfVendors;
   }
 
 }

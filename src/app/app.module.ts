@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VendorComponent, DialogOverviewExampleDialog } from './vendor/vendor.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
 // import { AgGridColumn } from 'ag-grid-angular';
 import { AgGridModule } from 'ag-grid-angular';
@@ -75,6 +75,7 @@ import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     A11yModule,

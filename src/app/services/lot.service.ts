@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Lot } from '../model/lot';
 import { Observable, of } from 'rxjs';
+import { VendorServiceService } from './vendor-service.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,7 +23,8 @@ const httpOptionsPost = {
 })
 export class LotService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private vendorService: VendorServiceService) { }
 
   private lotURL = 'http://localhost:8080/uniform/lot';
 
@@ -39,5 +41,9 @@ export class LotService {
 
   save(lotObject: Lot) {
     this.http.post(this.lotURL + '/save', lotObject, httpOptionsPost).subscribe();
+  }
+
+  getVendors(term: string) {
+    return this.vendorService.getVendorsByTerm(term);
   }
 }
