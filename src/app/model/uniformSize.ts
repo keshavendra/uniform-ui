@@ -1,5 +1,5 @@
 export class UniformSize {
-    uniformSizeId ?: number;
+    sizeId ?: number;
     gender: string;
     uniformNumber: number;
 }

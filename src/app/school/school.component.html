@@ -1,0 +1,16 @@
+<ag-grid-angular 
+    style="width: 100%; height: 300px;" 
+    class="ag-theme-balham"
+    [rowData]="schools" 
+    [columnDefs]="columnDefs"
+    [rowSelection]="rowSelection"
+    (gridReady)="onGridReady($event)">
+</ag-grid-angular>
+<div>
+  <div>
+    <button mat-raised-button (click)="openDialogForAdd()">Add</button>
+  </div>
+  <div>
+    <button mat-raised-button (click)="openDialogForUpdate()">Update</button>
+  </div>
+</div>

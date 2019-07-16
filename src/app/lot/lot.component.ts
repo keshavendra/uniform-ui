@@ -91,8 +91,8 @@ export class LotDetailDialogComponent {
   lotsItems: LotItem[];
 
   public columnDefs = [
-    { headerName: 'School', field: 'Uniform.School.schoolName', editable: true },
-    { headerName: 'Uniform Size', field: 'Uniform.UniformSize', editable: true },
+    { headerName: 'School', field: 'uniform.school.schoolName', editable: true },
+    { headerName: 'Uniform Size', field: 'uniform.UniformSize', editable: true },
     { headerName: 'Cost Price', field: 'costPrice', editable: true },
     { headerName: 'GST', field: 'gst', editable: true },
     { headerName: 'Quantity', field: 'quantity', editable: true }
@@ -122,7 +122,7 @@ export class LotDetailDialogComponent {
     if (this.newLot !== undefined && this.newLot.lotItems !== undefined) {
       this.lotsItems = this.newLot.lotItems;
     } else {
-      this.lotsItems = LotItem[0];
+      this.lotsItems = LotItem[1];
     }
   }
 

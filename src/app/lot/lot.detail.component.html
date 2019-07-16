@@ -6,7 +6,7 @@
       <input type="text" placeholder="Vendor Name" matInput [formControl]="searchTerm" [matAutocomplete]="auto">
       <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let vendors of searchedVendors" [value]="vendors.vendorName">
+        <mat-option *ngFor="let vendors of searchedVendors" [id]="vendors" [value]="vendors.vendorName">
           {{ vendors.vendorName }}
         </mat-option>
       </mat-autocomplete>

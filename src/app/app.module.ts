@@ -61,6 +61,8 @@ import {
 } from '@angular/material';
 import { TestComponent } from './test/test.component';
 import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
+import { SchoolComponent, SchoolDetailComponentDialog } from './school/school.component';
+import { UniformSizeComponent, UniformSizeDetailComponentDialog } from './uniform-size/uniform-size.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,11 @@ import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
     DialogOverviewExampleDialog,
     TestComponent,
     LotComponent,
-    LotDetailDialogComponent
+    LotDetailDialogComponent,
+    SchoolComponent,
+    SchoolDetailComponentDialog,
+    UniformSizeComponent,
+    UniformSizeDetailComponentDialog
   ],
   imports: [
     FormsModule,
@@ -179,7 +185,11 @@ import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
     VendorComponent,
     DialogOverviewExampleDialog,
     LotComponent,
-    LotDetailDialogComponent
+    LotDetailDialogComponent,
+    SchoolComponent,
+    SchoolDetailComponentDialog,
+    UniformSizeComponent,
+    UniformSizeDetailComponentDialog
   ]
 })
 export class AppModule { }
