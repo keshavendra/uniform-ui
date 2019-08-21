@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UniformSizeComponent } from './uniform-size.component';
+import { LotItemsDetailComponent } from './lot-items-detail.component';
 
-describe('UniformSizeComponent', () => {
-  let component: UniformSizeComponent;
-  let fixture: ComponentFixture<UniformSizeComponent>;
+describe('LotItemsDetailComponent', () => {
+  let component: LotItemsDetailComponent;
+  let fixture: ComponentFixture<LotItemsDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UniformSizeComponent ]
+      declarations: [ LotItemsDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UniformSizeComponent);
+    fixture = TestBed.createComponent(LotItemsDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

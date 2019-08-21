@@ -6,4 +6,6 @@ export class LotItem {
     costPrice: number;
     gst: number;
     quantity: number;
+    gender: string;
+    uniformNumber: number;
 }

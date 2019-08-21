@@ -3,17 +3,25 @@
   <!-- <p>What's your favorite animal?</p> -->
   <form>
     <mat-form-field>
-      <input type="text" placeholder="Vendor Name" matInput [formControl]="searchTerm" [matAutocomplete]="auto">
+      <input type="text" placeholder="School Name" matInput [formControl]="searchTerm" [matAutocomplete]="auto">
       <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let vendors of searchedVendors" [id]="vendors" [value]="vendors.vendorName">
-          {{ vendors.vendorName }}
+        <mat-option *ngFor="let schools of searchedSchools" [id]="schools" [value]="schools.schoolName">
+          {{ schools.schoolName }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
     <br/>
     <mat-form-field>
-      <input type="number" placeholder="Lot Extra Payment" matInput>
+      <mat-label>Gender</mat-label>
+      <select matNativeControl required>
+          <option value="BOY">Boy</option>
+          <option value="GIRL">Girl</option>
+      </select>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input type="number" placeholder="Size" matInput>
     </mat-form-field>
     <br/>
     <mat-form-field>

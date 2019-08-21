@@ -7,7 +7,6 @@ import { VendorComponent, DialogOverviewExampleDialog } from './vendor/vendor.co
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VendorDetailComponent } from './vendor-detail/vendor-detail.component';
-// import { AgGridColumn } from 'ag-grid-angular';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -60,9 +59,10 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { TestComponent } from './test/test.component';
-import { LotComponent, LotDetailDialogComponent } from './lot/lot.component';
+import { LotComponent } from './lot/lot.component';
 import { SchoolComponent, SchoolDetailComponentDialog } from './school/school.component';
-import { UniformSizeComponent, UniformSizeDetailComponentDialog } from './uniform-size/uniform-size.component';
+import { LotDetailComponentComponent } from './lot-detail-component/lot-detail-component.component';
+import { LotItemsDetailComponent } from './lot-items-detail/lot-items-detail.component';
 
 @NgModule({
   declarations: [
@@ -73,11 +73,10 @@ import { UniformSizeComponent, UniformSizeDetailComponentDialog } from './unifor
     DialogOverviewExampleDialog,
     TestComponent,
     LotComponent,
-    LotDetailDialogComponent,
     SchoolComponent,
     SchoolDetailComponentDialog,
-    UniformSizeComponent,
-    UniformSizeDetailComponentDialog
+    LotDetailComponentComponent,
+    LotItemsDetailComponent
   ],
   imports: [
     FormsModule,
@@ -185,11 +184,9 @@ import { UniformSizeComponent, UniformSizeDetailComponentDialog } from './unifor
     VendorComponent,
     DialogOverviewExampleDialog,
     LotComponent,
-    LotDetailDialogComponent,
     SchoolComponent,
     SchoolDetailComponentDialog,
-    UniformSizeComponent,
-    UniformSizeDetailComponentDialog
+    LotDetailComponentComponent
   ]
 })
 export class AppModule { }

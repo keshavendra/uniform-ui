@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Vendor } from '../model/vendor';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError, tap  } from 'rxjs/operators';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 const httpOptions = {
@@ -41,7 +41,7 @@ export class VendorServiceService {
   }
 
   save(vendorObject: Vendor) {
-    this.http.post(this.vendorURL + '/save', vendorObject, httpOptionsPost).subscribe();
+    this.http.post(this.vendorURL + '/save', vendorObject, httpOptionsPost).toPromise().then(res => console.log(res));
   }
 
   getVendorsByTerm(term: string) {

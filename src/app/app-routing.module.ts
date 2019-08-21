@@ -6,7 +6,6 @@ import { VendorComponent } from './vendor/vendor.component';
 import { TestComponent } from './test/test.component';
 import { LotComponent } from './lot/lot.component';
 import { SchoolComponent } from './school/school.component';
-import { UniformSizeComponent } from './uniform-size/uniform-size.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -15,8 +14,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: VendorDetailComponent },
   { path: 'test', component: TestComponent},
   { path: 'lots', component: LotComponent},
-  { path: 'schools', component: SchoolComponent},
-  { path: 'uniformSize', component: UniformSizeComponent}
+  { path: 'schools', component: SchoolComponent}
 ];
 
 @NgModule({

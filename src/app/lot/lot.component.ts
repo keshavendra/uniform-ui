@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { GridApi } from 'ag-grid-community';
-import { FormControl } from '@angular/forms';
 import { Lot } from '../model/lot';
 import { LotService } from '../services/lot.service';
-import { LotItem } from '../model/lotItem';
+import { LotDetailComponentComponent } from '../lot-detail-component/lot-detail-component.component';
 
 @Component({
   selector: 'app-lot',
@@ -45,13 +44,12 @@ export class LotComponent implements OnInit {
   }
 
   onGridReady(params) {
-    // this.getVendors();
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit();
   }
 
   openDialogForAdd(): void {
-    const dialogRef = this.dialog.open(LotDetailDialogComponent, {
+    const dialogRef = this.dialog.open(LotDetailComponentComponent, {
       width: '600px',
       data: { newLot: this.newLot, lotService: this.lotService }
     }
@@ -64,7 +62,7 @@ export class LotComponent implements OnInit {
 
   openDialogForUpdate(): void {
     const selectedRowNodes = this.gridApi.getSelectedRows()[0] as Lot;
-    const dialogRef = this.dialog.open(LotDetailDialogComponent, {
+    const dialogRef = this.dialog.open(LotDetailComponentComponent, {
       width: '600px',
       data: { newLot: selectedRowNodes, lotService: this.lotService }
     }
@@ -77,65 +75,3 @@ export class LotComponent implements OnInit {
 
 }
 
-@Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'lot-detail-component',
-  templateUrl: 'lot.detail.component.html',
-})
-// tslint:disable-next-line:component-class-suffix
-export class LotDetailDialogComponent {
-  public newLot: Lot;
-  public lotService: LotService;
-  searchTerm: FormControl = new FormControl();
-  searchedVendors = [] as any;
-  lotsItems: LotItem[];
-
-  public columnDefs = [
-    { headerName: 'School', field: 'uniform.school.schoolName', editable: true },
-    { headerName: 'Uniform Size', field: 'uniform.UniformSize', editable: true },
-    { headerName: 'Cost Price', field: 'costPrice', editable: true },
-    { headerName: 'GST', field: 'gst', editable: true },
-    { headerName: 'Quantity', field: 'quantity', editable: true }
-  ];
-
-  public gridApi: GridApi;
-
-  constructor(
-    public dialogRef: MatDialogRef<LotDetailDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public matData: any
-  ) {
-    this.newLot = matData.newLot;
-    this.lotService = matData.lotService;
-    this.searchTerm.valueChanges.subscribe(
-      term => {
-        if (term !== '' && term.length >= 3) {
-          this.lotService.getVendors(term).subscribe(data => {
-            this.searchedVendors = data as any[];
-          });
-        }
-      }
-    );
-    this.getLotItems();
-  }
-
-  getLotItems() {
-    if (this.newLot !== undefined && this.newLot.lotItems !== undefined) {
-      this.lotsItems = this.newLot.lotItems;
-    } else {
-      this.lotsItems = LotItem[1];
-    }
-  }
-
-  onSaveClick(): void {
-    this.lotService.save(this.newLot);
-    this.dialogRef.close();
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridApi.sizeColumnsToFit();
-    if (this.newLot === undefined) {
-      this.gridApi.showNoRowsOverlay();
-    }
-  }
-}
