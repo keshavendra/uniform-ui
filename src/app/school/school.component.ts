@@ -24,6 +24,8 @@ export class SchoolComponent implements OnInit {
   public gridApi: GridApi;
   selectedSchool: School;
   private rowSelection;
+  private isButtonVisible = false;
+  readonly columnWidth: string = '600px';
 
   constructor(
     private schoolService: SchoolsService,
@@ -35,8 +37,10 @@ export class SchoolComponent implements OnInit {
     this.getSchools();
   }
 
-  onSelect(school: School): void {
-    this.selectedSchool = school;
+  onSelectionChanged() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    this.isButtonVisible = selectedRows.length === 0 ? false : true;
+    this.selectedSchool = selectedRows.length === 0 ? null : selectedRows[0];
   }
 
   getSchools(): void {
@@ -46,30 +50,33 @@ export class SchoolComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit();
+    this.gridApi.redrawRows();
   }
 
   openDialogForAdd(): void {
     const dialogRef = this.dialog.open(SchoolDetailComponentDialog, {
-      width: '600px',
-      data: {newSchool: this.newSchool, schoolService: this.schoolService}
+      width: this.columnWidth,
+      data: {isNewData: true, newSchool: this.newSchool, schoolService: this.schoolService}
     }
     );
 
     dialogRef.afterClosed().subscribe(result => {
+      this.gridApi.deselectAll();
       this.getSchools();
-      // this.animal = result;
     });
   }
 
   openDialogForUpdate(): void {
     const selectedRowNodes = this.gridApi.getSelectedRows()[0];
-    const dialogRef = this.dialog.open(SchoolDetailComponentDialog, {
-      width: '600px',
-      data: {newSchool: selectedRowNodes, schoolService: this.schoolService}
+    const dialogRef = this.dialog.open(
+      SchoolDetailComponentDialog, {
+      width: this.columnWidth,
+      data: { isNewData: false, newSchool: selectedRowNodes, schoolService: this.schoolService}
     }
     );
 
     dialogRef.afterClosed().subscribe(result => {
+      this.gridApi.deselectAll();
       this.getSchools();
       // this.animal = result;
     });
@@ -86,16 +93,39 @@ export class SchoolComponent implements OnInit {
 export class SchoolDetailComponentDialog {
   public newSchool: School;
   public schoolService: SchoolsService;
+  private isNew: boolean;
   constructor(
     public dialogRef: MatDialogRef<SchoolDetailComponentDialog>,
     @Inject(MAT_DIALOG_DATA) public matData: any
     ) {
       this.newSchool = matData.newSchool;
       this.schoolService = matData.schoolService;
+      this.isNew = matData.isNewData;
+    }
+
+    ngOnInit() {
+      this.dialogRef.keydownEvents().subscribe(event => {
+        if (event.key === 'Escape') {
+            this.onCancel();
+        }
+    });
+
+      this.dialogRef.backdropClick().subscribe(event => {
+        this.onCancel();
+    });
     }
 
   onSaveClick(): void {
-    this.schoolService.save(this.newSchool);
+    if (this.isNew) {
+      this.schoolService.save(this.newSchool);
+    } else {
+      this.schoolService.update(this.newSchool);
+    }
+    this.dialogRef.close();
+  }
+
+  onCancel(): void {
+    console.log('Cancel clicked');
     this.dialogRef.close();
   }
 }

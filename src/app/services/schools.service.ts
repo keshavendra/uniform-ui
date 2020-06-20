@@ -47,6 +47,10 @@ export class SchoolsService {
     this.http.post(this.schoolURL + '/save', schoolObject, httpOptionsPost).subscribe();
   }
 
+  update(schoolObject: School) {
+    this.http.put(this.schoolURL + '/update', schoolObject, httpOptionsPost).subscribe();
+  }
+
   getSchoolsByTerm(term: string) {
     const listOfSchools = this.http.get<School[]>(this.schoolURL + '/list/' + term, httpOptions)
     .pipe(debounceTime(500),
